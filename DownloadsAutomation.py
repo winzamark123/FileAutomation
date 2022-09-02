@@ -15,7 +15,10 @@ obj = os.scandir(source_dir)
 print("Files and Directories in '% s':" % source_dir)
 for entry in obj :
     if entry.is_dir() or entry.is_file():
-        print(entry.name)
+        
+        name = (entry.name).split(".")
+
+        print(name)
  
 #closing the scan
-obj.close()
+obj.close() 
