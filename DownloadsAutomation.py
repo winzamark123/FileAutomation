@@ -1,16 +1,20 @@
 import os
 import shutil
 
+#moving the files using shutil
+def Move_Files(src_path, file_name, dest_path):
+    shutil.move(src_path, dest_path + file_name)
+    
 
 class Scan_Files:
     #Starting Directory
     source_dir = "/Users/wincheng/Downloads"
 
     #Destination Directory
-    CSV_dir = "/Users/wincheng/Downloads/CSV_Downloads"
-    Vids_dir = "/Users/wincheng/Downloads/Vids_Downloads"
-    Photos_dir = "/Users/wincheng/Downloads/Photos_Downloads"
-    PDF_dir = "/Users/wincheng/Downloads/PDF_Downloads"
+    CSV_dir = "/Users/wincheng/Downloads/CSV_Downloads/"
+    Vids_dir = "/Users/wincheng/Downloads/Vids_Downloads/"
+    Photos_dir = "/Users/wincheng/Downloads/Photos_Downloads/"
+    PDF_dir = "/Users/wincheng/Downloads/PDF_Downloads/"
 
     #-------------------------------------
     # Scan the directory and get an iterator of os.DirEntry objects
@@ -40,13 +44,15 @@ class Scan_Files:
 
                 if src_path.endswith(".mp4"):
                     dest_path = Vids_dir
-                
-                #moving the files using shutil
-                shutil.move(src_path, dest_path)
 
                 print(src_path)
+                Move_Files(src_path, entry.name, dest_path)
         
         #closing the scan 
         obj.close() 
+
+
+
+
 
 
