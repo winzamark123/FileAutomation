@@ -11,6 +11,7 @@ def Move_Files(source_dir, file_name, dest_path):
         print("The file is already in the folder")
         return
 
+    #updates the src_path with the folder's name + the file name
     src_path = source_dir + "/" + file_name
 
     shutil.move(src_path, dest_path)
@@ -26,13 +27,15 @@ class Scan_Files:
     Photos_dir = "/Users/wincheng/Downloads/Photos_Downloads/"
     PDF_dir = "/Users/wincheng/Downloads/PDF_Downloads/"
 
-    #-------------------------------------
+    #=======================================================================
+    #STARTING THE PROGRAM
+    #=======================================================================
+
     # Scan the directory and get an iterator of os.DirEntry objects
     # corresponding to entries in it using os.scandir() method
     obj = os.scandir(source_dir)
     
     # List all files and directories in the specified source_dir
-    print("Files and Directories in '% s':" % source_dir)
     with os.scandir(source_dir) as itr:
 
     #starting the loop running through all files contained within the directory 
@@ -43,11 +46,12 @@ class Scan_Files:
                 file_name = entry.name
                 dest_path = source_dir
 
+                #ignore the current folders within the download directory
                 if file_name.lower() in ["pdf_downloads", "csv_downloads", \
-                    "photos_downloads", "vids_downloads"]:
-                    print("No downloaded Files")
-                    
-
+                    "photos_downloads", "vids_downloads"] or file_name.startswith("."):
+                    continue
+                
+                #specifying the destination folder based on types of file
                 if file_name.endswith(".png") or file_name.endswith(".jpeg"):
                     dest_path = Photos_dir
 
