@@ -2,8 +2,18 @@ import os
 import shutil
 
 #moving the files using shutil
-def Move_Files(src_path, file_name, dest_path):
-    shutil.move(src_path, dest_path + file_name)
+def Move_Files(source_dir, file_name, dest_path):
+    
+    files_exist = os.path.exists(dest_path + "/" + file_name)
+
+    #if the file is already in the folder 
+    if files_exist:
+        print("The file is already in the folder")
+        return
+
+    src_path = source_dir + "/" + file_name
+
+    shutil.move(src_path, dest_path)
     
 
 class Scan_Files:
@@ -30,23 +40,23 @@ class Scan_Files:
             if entry.is_dir() or entry.is_file():
 
                 #init destination as Downloads folder in case of other type of files
-                src_path = entry.name
-                dest_path = source_dir 
-
-                if src_path.endswith(".png") or src_path.endswith(".jpeg"):
+                file_name = entry.name
+                dest_path = source_dir
+             
+                if file_name.endswith(".png") or file_name.endswith(".jpeg"):
                     dest_path = Photos_dir
 
-                if src_path.endswith(".csv"):
+                if file_name.endswith(".csv"):
                     dest_path = CSV_dir
 
-                if src_path.endswith(".pdf"):
+                if file_name.endswith(".pdf"):
                     dest_path = PDF_dir
 
-                if src_path.endswith(".mp4"):
+                if file_name.endswith(".mp4"):
                     dest_path = Vids_dir
 
-                print(src_path)
-                Move_Files(src_path, entry.name, dest_path)
+                print(file_name)
+                Move_Files(source_dir, file_name, dest_path)
         
         #closing the scan 
         obj.close() 
