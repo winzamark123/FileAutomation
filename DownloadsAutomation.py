@@ -42,19 +42,24 @@ class Scan_Files:
                 #init destination as Downloads folder in case of other type of files
                 file_name = entry.name
                 dest_path = source_dir
-             
+
+                if file_name.lower() in ["pdf_downloads", "csv_downloads", \
+                    "photos_downloads", "vids_downloads"]:
+                    print("No downloaded Files")
+                    
+
                 if file_name.endswith(".png") or file_name.endswith(".jpeg"):
                     dest_path = Photos_dir
 
-                if file_name.endswith(".csv"):
+                elif file_name.endswith(".csv"):
                     dest_path = CSV_dir
 
-                if file_name.endswith(".pdf"):
+                elif file_name.endswith(".pdf"):
                     dest_path = PDF_dir
 
-                if file_name.endswith(".mp4"):
+                elif file_name.endswith(".mp4"):
                     dest_path = Vids_dir
-
+                
                 print(file_name)
                 Move_Files(source_dir, file_name, dest_path)
         
