@@ -52,7 +52,7 @@ class Scan_Files:
                     continue
                 
                 #specifying the destination folder based on types of file
-                if file_name.endswith(".png") or file_name.endswith(".jpeg") or file_name.endswith(".heic") or file_name.endswith(".HEIC"):
+                if file_name.endswith(".png") or file_name.endswith(".jpeg") or file_name.endswith(".heic") or file_name.endswith(".HEIC") or file_name.endswith(".jpg"):
                     dest_path = Photos_dir
 
                 elif file_name.endswith(".csv"):
